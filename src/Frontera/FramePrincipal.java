@@ -5,6 +5,10 @@
  */
 package Frontera;
 
+import Entidad.Sistema;
+import Entidad.Usuario;
+import java.util.ArrayList;
+
 /**
  *
  * @author LENOVO
@@ -16,8 +20,12 @@ public class FramePrincipal extends javax.swing.JFrame {
     /**
      * Creates new form FramePrincipal
      */
+    
+    public static Sistema sistema = new Sistema();
+    
     public FramePrincipal() {
         initComponents();
+        inicializacion(); // <--------------------
     }
 
     /**
@@ -67,7 +75,7 @@ public class FramePrincipal extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 380, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 625, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +104,7 @@ public class FramePrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -151,7 +159,60 @@ public class FramePrincipal extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void inicializacion(){
+        
+        /*
+         * * Creamos el arreglo: Necesitamos importar la clase
+         *   ArrayList y la clase entidad.Usuario
+        */
+        
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+        
+        /*
+         * Creamos los usuarios
+         */
+        
+        Usuario a = new Usuario();
+        Usuario b = new Usuario();
+        Usuario c = new Usuario();
+        
+        /*
+         * Proveemos nombres y contraseñas
+        */
+        
+        a.setNombre("juan");
+        a.setPassword("1234");
+        b.setNombre("pedro");
+        b.setPassword("123");
+        c.setNombre("maria");
+        c.setPassword("12345");
+        
+        /*
+         * Agregamos al arreglo
+        */
+        
+        usuarios.add(a);
+        usuarios.add(b);
+        usuarios.add(c);
+        
+        /*
+         * Le asignamos el arreglo usuarios a la variable de clase "sistema"
+        */
+        
+        sistema.setUsuarios(usuarios);
+        
+        /*
+         * Recorremos con un iterador para aseguraros
+        */
+        
+        for(Usuario u: sistema.getUsuarios()){
+            System.out.println(u.getNombre());
+            System.out.println(u.getPassword());
+            System.out.println("-------------");
+        }
+    }   
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ingresoB;
     private javax.swing.JPanel jPanel1;
